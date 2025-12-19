@@ -85,6 +85,15 @@
 	width: 100%;
 	padding-bottom: 0.5rem;	
 }
+#text-input-box,
+#add-text-btn,
+#text-font-box {
+	width: 100%;
+	height: 3rem;
+	border-radius: 0.4rem;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
 .shape-container {
     display: flex;
     flex-wrap: wrap;
@@ -102,7 +111,7 @@
     width: calc((100% - 1.6rem) / 3);
     aspect-ratio: 1 / 1;
 
-    background: #fff;
+    background: #ffffff;
     border-radius: 0.4rem;
     border: 1px solid #ddd;
 
@@ -122,18 +131,53 @@
     height: 70%;
     object-fit: contain;
 }
-#shape-size-container{
+#text-input-container{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+#text-font-container{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+#text-font-select{
+	width: 100%;
+    height: 3rem;
+    border-radius: 0.4rem;
+    border: 1px solid #ccc;
+    font-weight: 500;
+    padding-left: 0.5rem;
+}
+#shape-size-container,
+#text-weight-container,
+#text-size-container {
 	display: flex;
 	width: 100%
 }
-#shape-size-container input[type="range"] {
+#shape-size-container input[type="range"],
+#text-weight-container input[type="range"],
+#text-size-container input[type="range"] {
     flex: 1;
 }
-#shape-size-value {
+#shape-size-value,
+#text-weight-value,
+#text-size-value {
     width: 6rem;
     margin-left: 10px;
 }
-#shape-color-picker{
+#text-aline-container button {
+	width: 36px;
+	height: 36px;
+	background: white;
+	border-radius: 0.4rem;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	margin-right: 1rem;
+}
+
+#shape-color-picker,
+#text-color-picker {
 	width: 36px;
 	height: 36px;
 	background: white;
@@ -163,9 +207,7 @@
 .hidden{
 	display: none;
 }
-
 </style>
-
 <div id="editor">
 	<div id = "editor-header"></div>
 	<div id = "editor-content">
@@ -186,28 +228,61 @@
 					<div class="tab-description">원하는 텍스트를 입력하세요<br>글꼴, 크기, 색상 등을 변경할 수 있습니다.</div>
 				</div>
 				<div class="tab-content">
-					<div class="tab-content-title">텍스트 상자</div>			
-					<div class="tab-content-description">내용</div>
+					<div class="tab-content-title">텍스트 상자</div>								
+					<div class="tab-content-description">
+						<div id="text-input-container">
+							<input id="text-input-box" type="text" value="" style="margin-bottom: 1rem; cursor: text;"/>
+							<div id="add-text-btn"></div>
+						</div>
+					</div>
 				</div>
 				<div class="tab-content">
 					<div class="tab-content-title">글꼴</div>			
-					<div class="tab-content-description">내용</div>
+					<div class="tab-content-description">
+						<div id="text-font-container">
+							<select id="text-font-select">
+					            <option value="NanumGothic" style="font-family: NanumGothic; font-weight: 500;">나눔 고딕</option>
+					            <option value="NanumMyeongjo" style="font-family: NanumMyeongjo; font-weight: 500;">나눔 명조</option>
+					            <option value="NanumPen" style="font-family: NanumPen; font-weight: 500;">나눔 펜</option>
+					        </select>
+						</div>
+					</div>
 				</div>
 				<div class="tab-content">
 					<div class="tab-content-title">굵기</div>			
-					<div class="tab-content-description">내용</div>
+					<div class="tab-content-description">
+						<div id="text-weight-container">
+							<input id="text-weight-slider" type="range" min="1" max="1000" value="10"/>
+							<span id="text-weight-value">10</span>
+						</div>
+					</div>
 				</div>
 				<div class="tab-content">
 					<div class="tab-content-title">크기</div>			
-					<div class="tab-content-description">내용</div>
+					<div class="tab-content-description">
+						<div id="text-size-container">
+							<input id="text-size-slider" type="range" min="1" max="1000" value="10"/>
+							<span id="text-size-value">10</span>
+						</div>
+					</div>
 				</div>
 				<div class="tab-content">
-					<div class="tab-content-title">정렬</div>			
-					<div class="tab-content-description">내용</div>
+					<div class="tab-content-title">정렬</div>	
+					<div class="tab-content-description">
+						<div id="text-aline-container">
+							<button id="text-aline-left"></button>
+							<button id="text-aline-center"></button>
+							<button id="text-aline-right"></button>
+						</div>
+					</div>
 				</div>
 				<div class="tab-content">
 					<div class="tab-content-title">색상</div>			
-					<div class="tab-content-description">내용</div>
+					<div class="tab-content-description">
+						<div id="text-color-container">						
+							<input type="color" id="text-color-picker" value="black"/>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div id="editor-tab-shape">
@@ -225,7 +300,7 @@
 					<div class="tab-content-title">크기</div>			
 					<div class="tab-content-description">
 						<div id="shape-size-container">
-							<input id="shape-size-slider" type="range" min="1" max="800" value="10"/>
+							<input id="shape-size-slider" type="range" min="1" max="1000" value="10"/>
 							<span id="shape-size-value">10</span>
 						</div>
 					</div>

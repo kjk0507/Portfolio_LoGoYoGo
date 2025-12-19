@@ -10,16 +10,13 @@ html, body {
 	margin: 0;
 	font-size: 10px;
 }
-
 body {
     display: flex;
     flex-direction: column;
 }
-
 :root {
 	--navi-height: 6rem;
 }
-
 #content {
 	flex: 1;
     overflow: auto;	
@@ -27,18 +24,30 @@ body {
 	scrollbar-width: none;
 	-ms-overflow-style: none;
 }
-
 #content::-webkit-scrollbar {
 	display: none;
 }
-
 .section_page {
 	height: 100vh;
 	scroll-snap-align: start;  
 	position: relative;
 	overflow: hidden;
 }
-
+@font-face {
+    font-family: 'NanumGothic';
+    src: url('/resources/fonts/NanumGothic.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'NanumMyeongjo';
+    src: url('/resources/fonts/NanumMyeongjo.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'NanumPen';
+    src: url('/resources/fonts/NanumPen.ttf') format('truetype');
+    font-weight: 400;
+}
 </style>
 </head>
 
