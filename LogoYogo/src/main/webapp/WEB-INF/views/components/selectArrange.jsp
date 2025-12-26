@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <style type="text/css">
 #selectArrange-header {
-	background: #eef0f6;
+	background: #f8fcff;
 	height: 18rem;
 }
 #selectArrange-title {
@@ -14,10 +14,11 @@
 	font-size: 2rem;
 	text-align: center;
 	padding-top: 2rem;
+    color: #8ca0b7;
 }
 #selectArrange-content {
 	display: flex;
-    background: #eef0f6;
+    background: #f8fcff;
     
     height: calc(100vh - 30rem);
     overflow-y: auto;

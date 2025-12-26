@@ -21,13 +21,13 @@
 	
 	<!-- Mapper 스캔 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	    <property name="basePackage" value="com.Eclipse.LoGoYoGo.mapper"/>
+	    <property name="basePackage" value="com.Eclipse.LogoYogo.mapper"/>
 	</bean>
 	
 	<!-- SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource"/>
-	    <property name="typeAliasesPackage" value="com.Eclipse.LoGoYoGo.domain"/>
+	    <property name="typeAliasesPackage" value="com.Eclipse.LogoYogo.domain"/>
 	    <property name="mapperLocations" value="classpath:/mapper/**/*.xml"/>
 	</bean>
 	

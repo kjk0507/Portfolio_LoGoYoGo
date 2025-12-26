@@ -15,7 +15,7 @@ body {
     flex-direction: column;
 }
 :root {
-	--navi-height: 6rem;
+	--navi-height: 7rem;
 }
 #content {
 	flex: 1;
@@ -60,6 +60,7 @@ body {
 	<script>
 	    var ctx = "${pageContext.request.contextPath}";
 	</script>
+	<script src="https://kit.fontawesome.com/63c4e068e0.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.0/fabric.min.js" defer></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>		
 </body>

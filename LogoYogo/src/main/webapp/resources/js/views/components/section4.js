@@ -1,7 +1,7 @@
-document.getElementById('section1-input-btn').addEventListener('click', e => {
+document.getElementById('section4-input-btn').addEventListener('click', e => {
 	e.preventDefault();		
 	
-	var logoText = document.getElementById('section1-input-logoText').value;
+	var logoText = document.getElementById('section4-input-logoText').value;
 	if(logoText == ""){
 		logoText = "텍스트 박스";
 	}

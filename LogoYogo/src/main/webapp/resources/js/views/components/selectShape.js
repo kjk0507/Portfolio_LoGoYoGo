@@ -29,7 +29,7 @@ function getDiagramSvgs(){
 
 document.getElementById('passEditor').addEventListener('click', e => {
 	e.preventDefault();	
-	sessionStorage.removeItem(setSelectData);
+	sessionStorage.removeItem('selectData');
 	$("#content").load("/editor.do", function () {
         window.scrollTo(0, 0);
     });

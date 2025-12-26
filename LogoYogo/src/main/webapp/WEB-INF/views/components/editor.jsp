@@ -24,7 +24,7 @@
     text-align: center;
     line-height: 4rem;
     width: 12rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 #editor-button > div.disabled {
     color: #aaa;
@@ -40,44 +40,117 @@
     z-index: 9999;
 }
 #preview-modal {
+	width: 70%;
+	height: auto;
     background: white;
     padding: 1rem;
     position: relative;
 }
 #preview-close {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 1.5rem;
+    right: 1rem;
     cursor: pointer;
+    font-size: 3rem;
+}
+#preview-header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    gap: 0.5rem;
+}
+#preview-logo {
+	width: 15rem;
+	text-align: center;
+    font-size: 2.4rem;
+    font-family: "Questrial";
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+
+    background: linear-gradient(
+        90deg,
+        rgb(70, 101, 217) 0%,
+        rgb(161, 118, 253) 100%
+    );
+
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+#preview-description {
+	text-align: center;
+	font-size: 2rem;
 }
 #preview-container {
 	display: flex;
-	gap: 1rem;
+	gap: 3rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	margin-bottom: 2rem;
 }
 .preview-canvas-container {
     position: absolute !important;
     pointer-events: none;
 }
 .preview-bg {
-	flex: auto;
-	height: 40rem;
-	weight: 40rem;
+	height: 100%;
+	width: 100%;
 }
+.preview-contant {
+	flex: 1;
+	display: flex;
+	position: relative;
+}
+.preview-img {
+	position: absolute;
+}
+#preview-img1 {
+	width: 13% !important;
+	height: 13% !important;
+	top: 26% !important;
+	left: 30% !important;
+	transform: skew(50deg, -28deg) !important;
+}
+#preview-img2 {
+	width: 15% !important;
+	height: 15% !important;
+	top: 56% !important;
+	left: 42% !important;
+	transform: skew(51deg, -31deg) !important;
+}
+#preview-img3 {
+	width: 18% !important;
+	height: 18% !important;
+	top: 38% !important;
+	left: 40% !important;
+	transform: skew(20deg, -15deg) !important;
+}
+#preview-img4 {
+	width: 45% !important;
+	height: 45% !important;
+	top: 17% !important;
+	left: 25% !important;
+}
+/*
 #preview-canvas1 {
-	top: -177px !important;
-	left: 166px !important;
+	top: -197px !important;
+	left: 196px !important;
 	transform: skew(51deg, -31deg) !important;
 }
 #preview-canvas2 {
-	top: -248px !important;
-	left: 161px !important;
+	top: -274px !important;
+	left: 181px !important;
 	transform: skew(20deg, -15deg) !important;
 }
 #preview-canvas3 {
-	top: -335px !important;
-	left: 103px !important;
+	top: -364px !important;
+	left: 120px !important;
 }
+*/
 #editor-content {
+	width: 100%;
+	height: 90%;
 	display: flex;
 	flex: 1;
 	background: #eef0f6;
@@ -94,7 +167,7 @@
 	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 #editor-tab{
-	width: 28rem;
+	width: 30rem;
 	background: #eef0f6;
 	z-index: 10;
 	transform: translateX(100%);
@@ -280,7 +353,7 @@
 #shape-size-value,
 #text-weight-value,
 #text-size-value {
-    width: 6rem;
+    width: 3rem;
     margin-left: 10px;
 }
 #text-aline-container button {
@@ -317,9 +390,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 1.6rem;
     cursor: pointer;
     border-bottom: #dee0e6 1.5px solid;
+    flex-direction: column;
+    font-weight: 500;
+    gap: 0.5rem;
+}
+.tab-btn-img {
+	font-size: 2.5rem;
+}
+.tab-btn-title {
+	
 }
 .hidden{
 	display: none !important;
@@ -328,10 +410,11 @@
 <div id="editor">
 	<div id="editor-header">
 		<div id="editor-button">
-			<div id="canvas-undo" class="disabled">실행취소</div>
-			<div id="canvas-redo" class="disabled">다시실행</div>
-			<div id="canvas-preview">미리보기</div>
-			<div id="canvas-save">저장하기</div>
+			<div id="canvas-undo" class="disabled"><i class="fa-solid fa-rotate-left" style="padding-right: 0.5rem;"></i>실행취소</div>
+			<div id="canvas-redo" class="disabled"><i class="fa-solid fa-rotate-right" style="padding-right: 0.5rem;"></i>다시실행</div>
+			<div id="canvas-preview"><i class="fa-solid fa-eye" style="padding-right: 0.5rem;"></i>미리보기</div>
+			<div id="canvas-save"><i class="fa-solid fa-floppy-disk" style="padding-right: 0.5rem;"></i>저장하기</div>
+			<div id="canvas-download"><i class="fa-solid fa-download" style="padding-right: 0.5rem;"></i></i>다운로드</div>
 		</div>
 	</div>
 	<div id="editor-content">
@@ -399,9 +482,9 @@
 					<div class="tab-content-title">정렬</div>	
 					<div class="tab-content-description">
 						<div id="text-aline-container">
-							<button id="text-aline-left"></button>
-							<button id="text-aline-center"></button>
-							<button id="text-aline-right"></button>
+							<button id="text-aline-left"><i class="fa-solid fa-align-left" style="font-size: 1.8rem;"></i></button>
+							<button id="text-aline-center"><i class="fa-solid fa-align-center" style="font-size: 1.8rem;"></i></button>
+							<button id="text-aline-right"><i class="fa-solid fa-align-right" style="font-size: 1.8rem;"></i></button>
 						</div>
 					</div>
 				</div>
@@ -445,17 +528,31 @@
 			</div>		
 		</div>
 		<div id="editor-tab-button">
-			<div class="tab-btn" data-tab="btn-tap-palette">팔레트</div>
-		    <div class="tab-btn" data-tab="btn-tap-text">텍스트</div>
-		    <div class="tab-btn" data-tab="btn-tap-shape">도형</div>
+			<div class="tab-btn" data-tab="btn-tap-palette">
+				<span class="tab-btn-img"><i class="fa-solid fa-droplet"></i></span>
+				<span class="tab-btn-title">팔레트</span>
+			</div>
+		    <div class="tab-btn" data-tab="btn-tap-text">
+		    	<span class="tab-btn-img"><i class="fa-solid fa-font"></i></span>
+		    	<span class="tab-btn-title">텍스트</span>
+	    	</div>
+		    <div class="tab-btn" data-tab="btn-tap-shape">
+		    	<span class="tab-btn-img"><i class="fa-solid fa-square"></i></span>
+		    	<span class="tab-btn-title">도형</span>
+	    	</div>
 		</div>
 	</div>
 </div>
 <!-- modal -->
 <div id="preview-overlay" class="hidden">
     <div id="preview-modal">
-    	<span id="preview-close" class="hidden">✕</span>
+    	<span id="preview-close"><i class="fa-solid fa-xmark"></i></span>
+    	<div id="preview-header">
+    		<div id="preview-logo">LogoYogo</div>
+    		<div id="preview-description">미리보기</div>
+    	</div>
     	<div id="preview-container">
+    	<!-- 
     		<div class="preview-contant">
 		    	<img class="preview-bg" src="/resources/images/preview/card.png" />
 		    	<canvas id="preview-canvas1" width="70" height="60"></canvas>
@@ -465,8 +562,18 @@
 		    	<canvas id="preview-canvas2" width="70" height="70"></canvas>
     		</div>
 	    	<div class="preview-contant">
-		    	<img class="preview-bg" src="/resources/images/preview/web-sample.png" />
+		    	<img class="preview-bg"" src="/resources/images/preview/web-sample.png" />
 		    	<canvas id="preview-canvas3" width="190" height="180"></canvas>
+	    	</div>
+    	 -->
+    		<div id="preview-contant1" class="preview-contant">
+		    	<img class="preview-bg" src="/resources/images/preview/card.png" />
+    		</div>
+    		<div id="preview-contant2" class="preview-contant">
+		    	<img class="preview-bg" src="/resources/images/preview/facebook.png" />
+    		</div>
+	    	<div id="preview-contant3" class="preview-contant">
+		    	<img class="preview-bg"" src="/resources/images/preview/web-sample.png" />
 	    	</div>
     	</div>
     </div>

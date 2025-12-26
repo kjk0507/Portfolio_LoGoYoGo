@@ -12,7 +12,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <context:component-scan base-package="com.Eclipse.LoGoYoGo"/>
+    <context:component-scan base-package="com.Eclipse.LogoYogo"/>
 
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" id="viewResolver" p:order="0"/>
 	
@@ -27,7 +27,7 @@
             <exclude-mapping path="/"/>
             <exclude-mapping path="/main"/>
         	<exclude-mapping path="/resources/**"/>
-            <bean class="com.Eclipse.LoGoYoGo.interceptor.LoginInterceptor"/>
+            <bean class="com.Eclipse.LogoYogo.interceptor.LoginInterceptor"/>
         </interceptor>
     </interceptors>		
 	-->

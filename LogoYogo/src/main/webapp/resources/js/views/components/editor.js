@@ -222,8 +222,43 @@ var closeBtn = document.getElementById('preview-close');
 document.getElementById('canvas-preview').addEventListener('click', openPreview);
 
 function openPreview() {
-    var overlay = document.getElementById('preview-overlay');
+	document.querySelectorAll('.preview-img').forEach(el => el.remove());
+	
+	var overlay = document.getElementById('preview-overlay');
     overlay.classList.remove('hidden');
+	
+	var img = document.createElement("img");
+    img.src = canvas.toDataURL({
+	    format: 'png',
+	    multiplier: 2
+	});
+	
+    //img.style.width = "100%";
+
+	var img1 = img.cloneNode(true);
+	var img2 = img.cloneNode(true);
+	var img3 = img.cloneNode(true);
+	var img4 = img.cloneNode(true);
+
+	img1.className = "preview-img";
+	img2.className = "preview-img";
+	img3.className = "preview-img";
+	img4.className = "preview-img";
+
+	img1.id = "preview-img1";
+	img2.id = "preview-img2";
+	img3.id = "preview-img3";
+	img4.id = "preview-img4";
+
+	document.getElementById("preview-contant1").appendChild(img1);
+	document.getElementById("preview-contant1").appendChild(img2);
+	document.getElementById("preview-contant2").appendChild(img3);
+	document.getElementById("preview-contant3").appendChild(img4);
+}
+/*
+function openPreview() {
+    var overlay = document.getElementById('preview-overlay');
+    overlay.classList.remove('hidden');	
 
     var previewCanvas1 = new fabric.Canvas('preview-canvas1', {
         selection: false
@@ -280,6 +315,7 @@ function loadPreviewCanvasFit(previewCanvas, sourceCanvas) {
         previewCanvas.requestRenderAll();
     });
 }
+*/
 
 closeBtn.addEventListener('click', () => {
     overlay.classList.add('hidden');
@@ -289,8 +325,8 @@ overlay.addEventListener('click', e => {
     if (e.target === overlay) overlay.classList.add('hidden');
 });
 
-// 캔버스 저장
-document.getElementById('canvas-save').addEventListener('click', () => {
+// 캔버스 다운로드
+document.getElementById('canvas-download').addEventListener('click', () => {
     const dataURL = canvas.toDataURL({
         format: 'png',
         quality: 1
@@ -739,8 +775,7 @@ function checkSessionData(){
     canvas.setActiveObject(textbox);
     canvas.requestRenderAll();
 	
-	
-	console.log("data = " + text + " | " + path + " | " + color + " | " + pos);
+	sessionStorage.removeItem('selectData');
 }
 
 function getSelectData() {
@@ -752,10 +787,6 @@ function getSelectData() {
 closeTab();
 hideAllTab();
 getDiagramSvgs();
-// 맨 처음 캔버스 값 저장
-saveHistory();
-// 세션 확인
-checkSessionData();
 // 초기 버튼 활성화
 if(!activeTab){
 	var firstBtn = document.querySelector('#editor-tab-button .tab-btn')		
@@ -764,4 +795,8 @@ if(!activeTab){
 		openTab(firstBtn.dataset.tab);
 	}
 }
+// 맨 처음 캔버스 값 저장
+saveHistory();
+// 세션 확인
+checkSessionData();
 

@@ -2,23 +2,31 @@
 <style type="text/css">
 #navi {
 	flex-shrink: 0; 
-	height: 6rem;
+	height: 7rem;
 	background: #4665d9;
 	color: white;
 	z-index: 1000;  
+	display: flex;
 }
 
-#title {
+#navi-title {
 	margin-left: 2rem;
-	font-size: 2.4rem;
+	font-size: 2.5rem;
 	display: flex;
 	align-items: center;
-	/*font-weight: bold;*/
+	padding-bottom: 1rem;
+	cursor: pointer;	
+	width: 15rem;
+	text-align: center;
+    letter-spacing: 0.2rem;
+    color: white;
+    font-weight: 1000;
 }
 </style>
 
 <div id="navi">
-	<span id="title" style="">Logoyogo
+	<div id="navi-title">LogoYogo</div>
+	<span style="">
 	<a href="#" data-url="/mainPage.do" class="nav-link">메인</a>
 	<a href="#" data-url="/section1.do" class="nav-link">Section1</a>
 	<a href="#" data-url="/section2.do" class="nav-link">Section2</a>

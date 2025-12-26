@@ -5,3 +5,5 @@
 
 <jsp:include page="/WEB-INF/views/components/section1.jsp" />
 <jsp:include page="/WEB-INF/views/components/section2.jsp" />
+<jsp:include page="/WEB-INF/views/components/section3.jsp" />
+<jsp:include page="/WEB-INF/views/components/section4.jsp" />

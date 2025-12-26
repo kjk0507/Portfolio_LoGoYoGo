@@ -1,4 +1,4 @@
-package com.Eclipse.LoGoYoGo.domain;
+package com.Eclipse.LogoYogo.domain;
 
 public class baseDTO {
 	private String id;

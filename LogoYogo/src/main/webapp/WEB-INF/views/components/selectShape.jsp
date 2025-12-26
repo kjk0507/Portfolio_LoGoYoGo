@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <style type="text/css">
 #selectShape-header {
-	background: #eef0f6;
+	background: #f8fcff;
 	height: 18rem;
 }
 #selectShape-title {
@@ -14,10 +14,11 @@
 	font-size: 2rem;
 	text-align: center;
 	padding-top: 2rem;
+    color: #8ca0b7;
 }
 #selectShape-content {
 	display: flex;
-    background: #eef0f6;
+    background: #f8fcff;
     
     height: calc(100vh - 30rem);
     overflow-y: auto;

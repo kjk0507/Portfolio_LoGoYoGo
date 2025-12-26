@@ -1,4 +1,4 @@
-package com.Eclipse.LoGoYoGo.controller;
+package com.Eclipse.LogoYogo.controller;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.Eclipse.LoGoYoGo.domain.baseDTO;
-import com.Eclipse.LoGoYoGo.mapper.LoginMapper;
+import com.Eclipse.LogoYogo.domain.baseDTO;
+import com.Eclipse.LogoYogo.mapper.LoginMapper;
 
 /**
  * Handles requests for the application home page.
@@ -41,6 +41,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	/*
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -54,7 +55,9 @@ public class HomeController {
 		
 		return "home";
 	}
+	*/
 	
+	/*
 	@RequestMapping(value = "test.do", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> getLoginInfo(baseDTO explainVo) {		
@@ -78,8 +81,9 @@ public class HomeController {
 		
 		return res;
 	}
+	*/
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
     public String main(Model model) {
 		model.addAttribute("contentPage", "/WEB-INF/views/components/mainPage.jsp");
         return "layout";
@@ -99,6 +103,16 @@ public class HomeController {
 	@RequestMapping("/section2.do")
 	public String getPageSection2() {
 	    return "components/section2";
+	}
+	
+	@RequestMapping("/section3.do")
+	public String getPageSection3() {
+	    return "components/section3";
+	}
+	
+	@RequestMapping("/section4.do")
+	public String getPageSection4() {
+	    return "components/section4";
 	}
 	
 	@RequestMapping("/selectShape.do")

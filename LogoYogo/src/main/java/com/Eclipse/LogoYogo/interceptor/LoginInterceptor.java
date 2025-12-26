@@ -1,4 +1,4 @@
-//package com.Eclipse.LoGoYoGo.interceptor;
+//package com.Eclipse.LogoYogo.interceptor;
 //
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;

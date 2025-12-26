@@ -8,6 +8,14 @@ $(document).on("click", ".nav-link", function (e) {
     });
 });
 
+document.getElementById('navi-title').addEventListener('click', e => {
+	e.preventDefault();	
+	sessionStorage.removeItem('selectData');
+	$("#content").load("/mainPage.do", function () {
+        window.scrollTo(0, 0);
+    });
+})
+
 /*
 function adjustNaviWidth() {
   var hasScroll =

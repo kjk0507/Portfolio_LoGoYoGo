@@ -1,6 +1,6 @@
-package com.Eclipse.LoGoYoGo.mapper;
+package com.Eclipse.LogoYogo.mapper;
 
-import com.Eclipse.LoGoYoGo.domain.baseDTO;
+import com.Eclipse.LogoYogo.domain.baseDTO;
 
 public interface LoginMapper {
 	baseDTO testBaseDTO(baseDTO testDto);
