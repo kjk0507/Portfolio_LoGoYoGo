@@ -4,7 +4,7 @@ public class baseDTO {
 	private String id;
 	private String pw;
 	
-	public baseDTO() {}
+	public baseDTO() {};
 	
 	public baseDTO(String id, String pw) {
 		this.id = id;

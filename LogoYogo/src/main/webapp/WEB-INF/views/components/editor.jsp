@@ -100,54 +100,43 @@
 .preview-contant {
 	flex: 1;
 	display: flex;
-	position: relative;
+	position: relative;	
+	width: 30%;
+    max-width: 40%;
 }
 .preview-img {
 	position: absolute;
+	max-width: 50%;
+    height: auto;
+    object-fit: contain;
 }
 #preview-img1 {
-	width: 13% !important;
-	height: 13% !important;
+	max-width: 15%;
+    height: auto;
 	top: 26% !important;
 	left: 30% !important;
 	transform: skew(50deg, -28deg) !important;
 }
 #preview-img2 {
-	width: 15% !important;
-	height: 15% !important;
+	max-width: 17%;
+    height: auto;
 	top: 56% !important;
 	left: 42% !important;
 	transform: skew(51deg, -31deg) !important;
 }
 #preview-img3 {
-	width: 18% !important;
-	height: 18% !important;
+	max-width: 20%;
+    height: auto;
 	top: 38% !important;
-	left: 40% !important;
+	left: 39% !important;
 	transform: skew(20deg, -15deg) !important;
 }
 #preview-img4 {
-	width: 45% !important;
-	height: 45% !important;
+	max-width: 50%;
+    height: auto;
 	top: 17% !important;
 	left: 25% !important;
 }
-/*
-#preview-canvas1 {
-	top: -197px !important;
-	left: 196px !important;
-	transform: skew(51deg, -31deg) !important;
-}
-#preview-canvas2 {
-	top: -274px !important;
-	left: 181px !important;
-	transform: skew(20deg, -15deg) !important;
-}
-#preview-canvas3 {
-	top: -364px !important;
-	left: 120px !important;
-}
-*/
 #editor-content {
 	width: 100%;
 	height: 90%;
@@ -414,7 +403,7 @@
 			<div id="canvas-redo" class="disabled"><i class="fa-solid fa-rotate-right" style="padding-right: 0.5rem;"></i>다시실행</div>
 			<div id="canvas-preview"><i class="fa-solid fa-eye" style="padding-right: 0.5rem;"></i>미리보기</div>
 			<div id="canvas-save"><i class="fa-solid fa-floppy-disk" style="padding-right: 0.5rem;"></i>저장하기</div>
-			<div id="canvas-download"><i class="fa-solid fa-download" style="padding-right: 0.5rem;"></i></i>다운로드</div>
+			<div id="canvas-download"><i class="fa-solid fa-download" style="padding-right: 0.5rem;"></i>다운로드</div>
 		</div>
 	</div>
 	<div id="editor-content">
@@ -444,7 +433,7 @@
 					<div class="tab-content-description">
 						<div id="text-input-container">
 							<input id="text-input-box" type="text" placeholder="내용을 입력하세요."/>
-							<div id="add-text-btn"></div>
+							<div id="add-text-btn" style="display: flex; align-items: center;"><i class="fa-solid fa-plus" style="flex: 1;"></i></div>
 						</div>
 					</div>
 				</div>
@@ -552,20 +541,6 @@
     		<div id="preview-description">미리보기</div>
     	</div>
     	<div id="preview-container">
-    	<!-- 
-    		<div class="preview-contant">
-		    	<img class="preview-bg" src="/resources/images/preview/card.png" />
-		    	<canvas id="preview-canvas1" width="70" height="60"></canvas>
-    		</div>
-    		<div class="preview-contant">
-		    	<img class="preview-bg" src="/resources/images/preview/facebook.png" />
-		    	<canvas id="preview-canvas2" width="70" height="70"></canvas>
-    		</div>
-	    	<div class="preview-contant">
-		    	<img class="preview-bg"" src="/resources/images/preview/web-sample.png" />
-		    	<canvas id="preview-canvas3" width="190" height="180"></canvas>
-	    	</div>
-    	 -->
     		<div id="preview-contant1" class="preview-contant">
 		    	<img class="preview-bg" src="/resources/images/preview/card.png" />
     		</div>
@@ -573,7 +548,7 @@
 		    	<img class="preview-bg" src="/resources/images/preview/facebook.png" />
     		</div>
 	    	<div id="preview-contant3" class="preview-contant">
-		    	<img class="preview-bg"" src="/resources/images/preview/web-sample.png" />
+		    	<img class="preview-bg" src="/resources/images/preview/web-sample.png" />
 	    	</div>
     	</div>
     </div>

@@ -1,32 +1,35 @@
 package com.Eclipse.LogoYogo.controller;
 
 import java.io.File;
-import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.io.ResolverUtil.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.Eclipse.LogoYogo.domain.baseDTO;
+import com.Eclipse.LogoYogo.domain.loginDTO;
 import com.Eclipse.LogoYogo.mapper.LoginMapper;
+import com.Eclipse.LogoYogo.service.LoginService;
 
 /**
  * Handles requests for the application home page.
@@ -37,6 +40,9 @@ public class HomeController {
 	@Autowired
 	private LoginMapper mapper;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	private LoginService loginService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -89,7 +95,62 @@ public class HomeController {
         return "layout";
     }
 	
+	@RequestMapping("/loginProcess")
+	@ResponseBody
+	public String loginProcess(@RequestParam String username, @RequestParam String password, HttpServletRequest request) {
+		System.out.println("로그인 프로세스");
+		System.out.println("로그인 id = " + username);
+		System.out.println("로그인 pw = " + password);
+		
+		loginDTO tempDto = new loginDTO();
+		tempDto.setUsername(username);
+		tempDto.setPassword(password);
+		
+	    loginDTO user = loginService.getUserInfo(tempDto);
+
+	    if (user == null) {
+	        return "fail";
+	    }
+
+	    HttpSession session = request.getSession(true);
+
+	    session.setAttribute("userinfo", user);
+	    session.setMaxInactiveInterval(60 * 30);
+
+	    return "success";
+	}
+	
+	@RequestMapping("/logoutProcess")
+	public String logout(HttpServletRequest request) {
+		System.out.println("로그아웃 프로세스");		
+	    request.getSession().invalidate();
+	    return "redirect:/";
+	}
+	
+	@RequestMapping("/checkDuplicatedId")
+	@ResponseBody
+	public String checkDuplicatedId(@RequestParam String username, HttpServletRequest request) {	
+		System.out.println("아이디 중복 확인 ID : " + username);
+		
+		loginDTO tempDto = new loginDTO();
+		tempDto.setUsername(username);
+		
+		loginDTO userId = loginService.getUserId(tempDto);
+		
+		if (userId != null) {
+			System.out.println("아이디 중복");	
+	        return "Duplicate";
+	    }		
+		
+	    return "NoDuplicate";
+	}
+	
 	// components 페이지 호출	
+	@RequestMapping("/navi")
+	public String getNavi() {
+	    return "components/navi";
+	}
+	
 	@RequestMapping("/mainPage.do")
 	public String getPageHome(Model model) {
 	    return "components/mainPage";
@@ -113,6 +174,11 @@ public class HomeController {
 	@RequestMapping("/section4.do")
 	public String getPageSection4() {
 	    return "components/section4";
+	} 
+	
+	@RequestMapping("/selectTemplate.do")
+	public String getPageSelectTemplate() {
+	    return "components/selectTemplate";
 	}
 	
 	@RequestMapping("/selectShape.do")
@@ -159,6 +225,5 @@ public class HomeController {
 	    	        + f.getName()
 	    	    )
 	    	    .collect(Collectors.toList());
-	}
-	
+	}	
 }

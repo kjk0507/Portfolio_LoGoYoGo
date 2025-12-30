@@ -1,3 +1,5 @@
+// --------------------------- js 시작 --------------------------- //
+(() => {
 function getDiagramSvgs(){
 	fetch(ctx + '/getDiagramSvgs')
 	.then(res => res.json())
@@ -36,7 +38,9 @@ document.getElementById('passEditor').addEventListener('click', e => {
 })
 
 function getSelectData() {
-    return JSON.parse(sessionStorage.getItem('selectData')) || {};
+    const raw = sessionStorage.getItem('selectData');
+    if (!raw) return null;
+    return JSON.parse(raw);
 }
 
 function setSelectData(data) {
@@ -44,3 +48,5 @@ function setSelectData(data) {
 }
 
 getDiagramSvgs();
+// --------------------------- js 밑단 --------------------------- //
+})();

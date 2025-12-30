@@ -1,3 +1,5 @@
+// --------------------------- js 시작 --------------------------- //
+(() => {
 document.querySelectorAll('.item-color-inner').forEach(item => {
     item.addEventListener('click', () => {
         var color = window.getComputedStyle(item).backgroundColor;
@@ -22,9 +24,13 @@ document.getElementById('passEditor').addEventListener('click', e => {
 })
 
 function getSelectData() {
-    return JSON.parse(sessionStorage.getItem('selectData')) || {};
+    const raw = sessionStorage.getItem('selectData');
+    if (!raw) return null;
+    return JSON.parse(raw);
 }
 
 function setSelectData(data) {
     sessionStorage.setItem('selectData', JSON.stringify(data));
 }
+// --------------------------- js 밑단 --------------------------- //
+})();

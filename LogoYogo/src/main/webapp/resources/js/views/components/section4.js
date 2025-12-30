@@ -1,3 +1,5 @@
+// --------------------------- js 시작 --------------------------- //
+(() => {
 document.getElementById('section4-input-btn').addEventListener('click', e => {
 	e.preventDefault();		
 	
@@ -23,3 +25,5 @@ function getSelectData() {
 function setSelectData(data) {
     sessionStorage.setItem('selectData', JSON.stringify(data));
 }
+// --------------------------- js 밑단 --------------------------- //
+})();

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LoGoYoGo</title>
+<title>LogoYogo</title>
 
 <style>
 html, body {

@@ -1,3 +1,5 @@
+// --------------------------- js 시작 --------------------------- //
+(() => {
 // --------------------------- 기본 설정 --------------------------- //
 // tab 관련
 var activeTab = null;
@@ -154,8 +156,8 @@ var isRestoring = false;
 
 // 히스토리 저장
 function saveHistory() {
-	console.log("save:", undoStack.length);
-	console.log("redo stack:", redoStack.length);
+	//console.log("save:", undoStack.length);
+	//console.log("redo stack:", redoStack.length);
 	
 	if (isRestoring) return;
 
@@ -171,7 +173,7 @@ function saveHistory() {
 
 // 실행취소
 document.getElementById('canvas-undo').addEventListener('click', () => {
-	console.log("undo:", undoStack.length);
+	//console.log("undo:", undoStack.length);
 	
     if (undoStack.length <= 1) return;
 
@@ -194,7 +196,7 @@ document.getElementById('canvas-redo').addEventListener('click', () => {
 
     isRestoring = true;
 
-    const next = redoStack.pop();
+    var next = redoStack.pop();
     undoStack.push(next);
 
     canvas.loadFromJSON(next, () => {
@@ -222,38 +224,46 @@ var closeBtn = document.getElementById('preview-close');
 document.getElementById('canvas-preview').addEventListener('click', openPreview);
 
 function openPreview() {
-	document.querySelectorAll('.preview-img').forEach(el => el.remove());
-	
-	var overlay = document.getElementById('preview-overlay');
+    document.querySelectorAll('.preview-img').forEach(el => el.remove());
+
+    var overlay = document.getElementById('preview-overlay');
     overlay.classList.remove('hidden');
-	
-	var img = document.createElement("img");
-    img.src = canvas.toDataURL({
-	    format: 'png',
-	    multiplier: 2
-	});
-	
-    //img.style.width = "100%";
 
-	var img1 = img.cloneNode(true);
-	var img2 = img.cloneNode(true);
-	var img3 = img.cloneNode(true);
-	var img4 = img.cloneNode(true);
+    var scales = [1, 1, 1, 1];
+    var targets = [
+        "preview-contant1",
+        "preview-contant1",
+        "preview-contant2",
+        "preview-contant3"
+    ];
 
-	img1.className = "preview-img";
-	img2.className = "preview-img";
-	img3.className = "preview-img";
-	img4.className = "preview-img";
+    scales.forEach((scale, idx) => {
+        createScaledImage(canvas, scale, (dataUrl) => {
+            var img = new Image();
+            img.src = dataUrl;
+            img.className = "preview-img";
+            img.id = `preview-img${idx + 1}`;
 
-	img1.id = "preview-img1";
-	img2.id = "preview-img2";
-	img3.id = "preview-img3";
-	img4.id = "preview-img4";
+            document.getElementById(targets[idx]).appendChild(img);
+        });
+    });
+}
 
-	document.getElementById("preview-contant1").appendChild(img1);
-	document.getElementById("preview-contant1").appendChild(img2);
-	document.getElementById("preview-contant2").appendChild(img3);
-	document.getElementById("preview-contant3").appendChild(img4);
+function createScaledImage(canvas, scale, callback) {
+    var img = new Image();
+    img.src = canvas.toDataURL("image/png");
+
+    img.onload = () => {
+        var temp = document.createElement("canvas");
+        var ctx = temp.getContext("2d");
+
+        temp.width = img.width * scale;
+        temp.height = img.height * scale;
+
+        ctx.drawImage(img, 0, 0, temp.width, temp.height);
+
+        callback(temp.toDataURL("image/png"));
+    };
 }
 /*
 function openPreview() {
@@ -327,16 +337,35 @@ overlay.addEventListener('click', e => {
 
 // 캔버스 다운로드
 document.getElementById('canvas-download').addEventListener('click', () => {
-    const dataURL = canvas.toDataURL({
+    var dataURL = canvas.toDataURL({
         format: 'png',
         quality: 1
     });
 
-    const a = document.createElement('a');
+    var a = document.createElement('a');
     a.href = dataURL;
     a.download = 'Logo.png';
     a.click();
+	
+	
 });
+
+document.getElementById('canvas-save').addEventListener('click', () => {
+    var json = canvas.toJSON();
+
+    //console.log(json); // 확인용
+
+    var blob = new Blob(
+        [JSON.stringify(json, null, 2)],
+        { type: "application/json" }
+    );
+
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "canvas.json";
+    a.click();
+});
+
 
 // ---------------------------  에디터 팔레트 버튼 --------------------------- //
 var paletteContainer = document.getElementById('palette-container');
@@ -779,7 +808,19 @@ function checkSessionData(){
 }
 
 function getSelectData() {
-    return JSON.parse(sessionStorage.getItem('selectData')) || {};
+    var raw = sessionStorage.getItem('selectData');
+    if (!raw) return null;
+    return JSON.parse(raw);
+}
+
+function checkSessionTemplateData(){
+	var data = JSON.parse(sessionStorage.getItem("selectTemplate"));
+	
+	if(!data) return;
+	
+	canvas.loadFromJSON(data);
+	
+	sessionStorage.removeItem('selectTemplate');
 }
 
 // --------------------------- 초기 실행 --------------------------- //
@@ -799,4 +840,6 @@ if(!activeTab){
 saveHistory();
 // 세션 확인
 checkSessionData();
-
+checkSessionTemplateData();
+// --------------------------- js 밑단 --------------------------- //
+})();

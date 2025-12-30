@@ -1,3 +1,5 @@
+// --------------------------- js 시작 --------------------------- //
+(() => {
 document.getElementById('section1-input-btn').addEventListener('click', e => {
 	e.preventDefault();		
 	
@@ -16,6 +18,13 @@ document.getElementById('section1-input-btn').addEventListener('click', e => {
     });
 })
 
+document.getElementById('section1-logo-template').addEventListener('click', e => {
+	e.preventDefault();	
+	$("#content").load("/selectTemplate.do", function () {
+        window.scrollTo(0, 0);
+    });
+})
+
 function getSelectData() {
     return JSON.parse(sessionStorage.getItem('selectData')) || {};
 }
@@ -23,3 +32,5 @@ function getSelectData() {
 function setSelectData(data) {
     sessionStorage.setItem('selectData', JSON.stringify(data));
 }
+// --------------------------- js 밑단 --------------------------- //
+})();
